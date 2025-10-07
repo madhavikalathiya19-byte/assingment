@@ -1,19 +1,18 @@
-#include <stdio.h>
-int main() 
-{
-    int num1, num2, temp;
-    printf("Enter two numbers: ");
-    scanf("%d %d", &num1, &num2);
-
-    while (num2 != 0)
+// Count vowels in a string
+#include<stdio.h>
+int main()
+{   
+  char str[50];
+  int i,v=0;
+  printf("\n Enter str :");
+  fgets(str,sizeof(str),stdin);
+  for(i=0;str[i]!='\0';i++)
+  {
+    if(str[i] =='a'||str[i] =='e' ||str[i] =='i' ||str[i] =='o' ||str[i] =='u')
     {
-        temp = num2;
-        num2 = num1 % num2;
-        num1 = temp;
+      v++;
     }
-
-    printf("The GCD is %d\n", num1);
-
-    return 0;
+  }
+  printf("\n Vowels = %d",v);  
+   return 0;
 }
-
