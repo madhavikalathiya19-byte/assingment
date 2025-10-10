@@ -1,67 +1,70 @@
-//Multiply two matrices
-#include<stdio.h>
+#include <stdio.h>
 int main()
 {
-  int r,c,i,j,a[100][100],b[100][100],sum[100][100];
-  printf("Enter number of row:-");
-  scanf("%d",&r);
-  printf("Enter number of col:-");
-  scanf("%d",&c);
-  
-  for(i=0;i<r;i++)
-  {
-    for(j=0;j<c;j++)
+    int r1, c1, r2, c2;
+
+    printf("Enter rows and columns for the first matrix: ");
+    scanf("%d %d", &r1, &c1);
+
+    printf("Enter rows and columns for the second matrix: ");
+    scanf("%d %d", &r2, &c2);
+
+    if (c1 != r2)
     {
-     printf("\n Enter a value of a[%d][%d]:-",i,j);
-     scanf("%d",&a[i][j]);
+        printf("Error: Number of columns of first matrix must be equal to         rows of second matrix.\n");
     }
-  }
-  
-  for(i=0;i<r;i++)
-  {
-    for(j=0;j<c;j++)
+
+    int a[r1][c1], b[r2][c2], result[r1][c2];
+
+    printf("\nEnter elements of the first matrix:\n");
+    for (int i = 0; i < r1; i++) 
     {
-     printf("\n Enter a value of b[%d][%d]:-",i,j);
-     scanf("%d",&b[i][j]);
+        for (int j = 0; j < c1; j++) 
+        {
+            printf("Enter a[%d][%d]: ", i + 1, j + 1);
+            scanf("%d", &a[i][j]);
+        }
     }
-  }
-  
-  for(i=0;i<r;i++)
-  {
-   for(j=0;j<c;j++)
-   {
-    sum[i][j] = a[i][j] * b[i][j];
-   }
-  }
-  
-   printf("\n a matrix \n");
-   for(i=0;i<r;i++)
-   {
-    for(j=0;j<c;j++)
+
+    printf("\nEnter elements of the second matrix:\n");
+    for (int i = 0; i < r2; i++)
     {
-     printf(" %d",a[i][j]);
+        for (int j = 0; j < c2; j++) 
+        {
+            printf("Enter b[%d][%d]: ", i + 1, j + 1);
+            scanf("%d", &b[i][j]);
+        }
     }
-    printf(" \n");
-  }
-  
-  printf("\n b matrix \n");
-  for(i=0;i<r;i++)
-  {
-    for(j=0;j<c;j++)
+
+    for (int i = 0; i < r1; i++) 
     {
-     printf(" %d",b[i][j]);
+        for (int j = 0; j < c2; j++) 
+        {
+            result[i][j] = 0;
+        }
     }
-    printf(" \n");
-  }
-  
-  printf("\n sum matrix \n");
-  for(i=0;i<r;i++)
-  {
-    for(j=0;j<c;j++)
+
+    for (int i = 0; i < r1; i++) 
     {
-      printf(" %d",sum[i][j]);
+        for (int j = 0; j < c2; j++)
+        {
+            for (int k = 0; k < c1; k++) 
+            {
+                result[i][j] += a[i][k] * b[k][j];
+            }
+        }
     }
-    printf(" \n");
-  }
-  return 0;
+
+    printf("\nResultant matrix:\n");
+    for (int i = 0; i < r1; i++) 
+    {
+        for (int j = 0; j < c2; j++) 
+        {
+            printf("%d\t", result[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
 }
+
